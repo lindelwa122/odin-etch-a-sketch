@@ -22,6 +22,16 @@ const createGrid = (rows, columns) => {
 
 createGrid(16, 16);
 
+const mouseoverHandler = () => {
+  const boxes = document.querySelectorAll(".column");
+  
+  boxes.forEach((box) => {
+    box.addEventListener("mouseover", () => {
+      box.style.backgroundColor = "yellow";
+    });
+  });
+}
+
 const updateGrid = () => {
   const rows = +prompt("Rows? (Max is 100)");
   const columns = +prompt("Columns? (Max is 100");
@@ -37,15 +47,11 @@ const updateGrid = () => {
     alert("Your input was invalid, by default the grid will be set to 16x16");
     createGrid(16, 16);
   } else createGrid(rows, columns);
+
+  mouseoverHandler();
 };
 
 const newGridButton = document.querySelector(".update-grid");
 newGridButton.addEventListener("click", updateGrid);
 
-const boxes = document.querySelectorAll(".column");
-
-boxes.forEach((box) => {
-  box.addEventListener("mouseover", () => {
-    box.style.backgroundColor = "yellow";
-  });
-});
+mouseoverHandler();
