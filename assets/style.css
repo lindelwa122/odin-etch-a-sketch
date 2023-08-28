@@ -2,6 +2,13 @@
   box-sizing: border-box; 
 }
 
+body {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .column {
   aspect-ratio: 1;
   border: 1px solid #000;
