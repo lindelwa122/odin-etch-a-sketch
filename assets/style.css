@@ -8,11 +8,15 @@
 }
 
 .container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
   width: 960px;
 }
 
 .row {
   display: flex;
+  gap: 5px;
 }
 
 .row div {
