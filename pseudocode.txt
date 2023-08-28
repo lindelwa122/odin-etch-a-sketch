@@ -1,0 +1,33 @@
+PROBLEM: Create a 16x16 grid
+
+DEFINE createGrid (rows, columns) => void:
+create a variable called container that starts with the DOM Element with classname container
+begin with i at 0 and add 1 to i on each pass until i is larger or equal to rows
+    create a variable called row that starts with results from createDiv(...classList)
+    begin with j at 0 and add 1 to j on each pass until j is larger or equal to columns
+        create a variable called column that starts with results from createDiv(...classList)
+        Append column to row
+
+    append row to container
+
+
+DEFINE createDiv (...classList) => DOMElement:
+create a constant variable called div and store the results of createElement('div')
+set the classList of div to ...classList
+return div
+
+DEFINE updateGrid () => void:
+ask the user "Rows? (Max is 100)" and store the answer in rows (convert to Number)
+ask the user "Columns? (Max is 100)" and store the answer in columns (convert to Number)
+if (rows is not a number or rows is not bigger than 1 and smaller than 101)
+or (columns is not a number or columns is not bigger than 1 and smaller than 101)
+    alert "Your input was invalid, by default the grid will be set to 16x16"
+    createGrid (16, 16)
+
+else createGrid (rows, columns)
+
+DEFINE updateColor = () => void:
+ask the user "Color Name? Ensure your chosen color is valid" and store the answer in color (convert to lowercase)
+confirm with the user that color is valid
+if valid then
+    update key 'color' at localStorage
