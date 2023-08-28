@@ -6,3 +6,7 @@
   aspect-ratio: 1;
   border: 1px solid #000;
 }
+
+.container {
+  width: 960px;
+}
