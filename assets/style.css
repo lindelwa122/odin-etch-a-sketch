@@ -10,3 +10,11 @@
 .container {
   width: 960px;
 }
+
+.row {
+  display: flex;
+}
+
+.row div {
+  flex: 1;
+}
