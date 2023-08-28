@@ -1,3 +1,5 @@
+localStorage.setItem("color", "yellow");
+
 const createDiv = (...classList) => {
   const div = document.createElement("div");
   div.classList = [...classList].join(" ");
@@ -24,13 +26,13 @@ createGrid(16, 16);
 
 const mouseoverHandler = () => {
   const boxes = document.querySelectorAll(".column");
-  
+
   boxes.forEach((box) => {
     box.addEventListener("mouseover", () => {
-      box.style.backgroundColor = "yellow";
+      box.style.backgroundColor = localStorage.getItem("color");
     });
   });
-}
+};
 
 const updateGrid = () => {
   const rows = +prompt("Rows? (Max is 100)");
@@ -57,11 +59,27 @@ newGridButton.addEventListener("click", updateGrid);
 mouseoverHandler();
 
 const clearGrid = () => {
-  const boxes = document.querySelectorAll('.column');
+  const boxes = document.querySelectorAll(".column");
   boxes.forEach((box) => {
-    box.style.backgroundColor = '';
+    box.style.backgroundColor = "";
   });
-}
+};
 
-const clearButton = document.querySelector('.clear-grid');
-clearButton.addEventListener('click', clearGrid);
+const clearButton = document.querySelector(".clear-grid");
+clearButton.addEventListener("click", clearGrid);
+
+const updateColor = () => {
+  const color = prompt(
+    "Color Name? Ensure your chosen color is valid",
+    "yellow"
+  ).toLowerCase();
+
+  const isColorValid = confirm(`Are you sure ${color} is a valid color?`);
+  
+  if (isColorValid) localStorage.setItem("color", color);
+  else updateColor();
+};
+
+const changeColorButton = document.querySelector(".change-color");
+
+changeColorButton.addEventListener("click", updateColor);
