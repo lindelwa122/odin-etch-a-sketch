@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Phudu&display=swap');
+
 * {
   box-sizing: border-box; 
 }
@@ -7,6 +9,11 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+button {
+  font-family: 'Phudu', cursive;
+  padding: 10px;
 }
 
 .column {
