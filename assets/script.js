@@ -1,5 +1,3 @@
-localStorage.setItem("color", "yellow");
-
 const createDiv = (...classList) => {
   const div = document.createElement("div");
   div.classList = [...classList].join(" ");
@@ -24,6 +22,17 @@ const createGrid = (rows, columns) => {
 
 createGrid(16, 16);
 
+const getColor = () => {
+  const color = localStorage.getItem("color")
+  if (!color) {
+    localStorage.setItem('color', 'yellow');
+  } else if (color === 'random') {
+    return getRandomColor();
+  }
+
+  return localStorage.getItem('color');
+}
+
 const getRandomColor = () => {
   const red = Math.floor(Math.random() * 256);
   const blue = Math.floor(Math.random() * 256);
@@ -42,7 +51,7 @@ const mouseoverHandler = () => {
 
   boxes.forEach((box) => {
     box.addEventListener("mouseover", () => {
-      box.style.backgroundColor = localStorage.getItem("color");
+      box.style.backgroundColor = getColor();
     });
   });
 };
