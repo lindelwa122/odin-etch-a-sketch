@@ -24,6 +24,19 @@ const createGrid = (rows, columns) => {
 
 createGrid(16, 16);
 
+const getRandomColor = () => {
+  const red = Math.floor(Math.random() * 256);
+  const blue = Math.floor(Math.random() * 256);
+  const green = Math.floor(Math.random() * 256);
+
+  return `rgb(${red}, ${blue}, ${green})`;
+}
+
+const randomizeColorButton = document.querySelector('.randomize-color');
+randomizeColorButton.addEventListener('click', () => {
+  localStorage.setItem('color', 'random');
+});
+
 const mouseoverHandler = () => {
   const boxes = document.querySelectorAll(".column");
 
@@ -75,7 +88,7 @@ const updateColor = () => {
   ).toLowerCase();
 
   const isColorValid = confirm(`Are you sure ${color} is a valid color?`);
-  
+
   if (isColorValid) localStorage.setItem("color", color);
   else updateColor();
 };
