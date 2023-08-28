@@ -24,7 +24,7 @@ createGrid(16, 16);
 const boxes = document.querySelectorAll(".column");
 
 boxes.forEach((box) => {
-  box.addEventListener("mouseover", (e) => {
+  box.addEventListener("mouseover", () => {
     box.style.backgroundColor = "yellow";
   });
 });
