@@ -55,3 +55,13 @@ const newGridButton = document.querySelector(".update-grid");
 newGridButton.addEventListener("click", updateGrid);
 
 mouseoverHandler();
+
+const clearGrid = () => {
+  const boxes = document.querySelectorAll('.column');
+  boxes.forEach((box) => {
+    box.style.backgroundColor = '';
+  });
+}
+
+const clearButton = document.querySelector('.clear-grid');
+clearButton.addEventListener('click', clearGrid);
