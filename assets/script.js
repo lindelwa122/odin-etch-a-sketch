@@ -1,3 +1,10 @@
+const clearGrid = () => {
+  const boxes = document.querySelectorAll(".column");
+  boxes.forEach((box) => {
+    box.style.backgroundColor = "";
+  });
+};
+
 const createDiv = (...classList) => {
   const div = document.createElement("div");
   div.classList = [...classList].join(" ");
@@ -20,18 +27,16 @@ const createGrid = (rows, columns) => {
   }
 };
 
-createGrid(16, 16);
-
 const getColor = () => {
-  const color = localStorage.getItem("color")
+  const color = localStorage.getItem("color");
   if (!color) {
-    localStorage.setItem('color', 'yellow');
-  } else if (color === 'random') {
+    localStorage.setItem("color", "yellow");
+  } else if (color === "random") {
     return getRandomColor();
   }
 
-  return localStorage.getItem('color');
-}
+  return localStorage.getItem("color");
+};
 
 const getRandomColor = () => {
   const red = Math.floor(Math.random() * 256);
@@ -39,12 +44,7 @@ const getRandomColor = () => {
   const green = Math.floor(Math.random() * 256);
 
   return `rgb(${red}, ${blue}, ${green})`;
-}
-
-const randomizeColorButton = document.querySelector('.randomize-color');
-randomizeColorButton.addEventListener('click', () => {
-  localStorage.setItem('color', 'random');
-});
+};
 
 const mouseoverHandler = () => {
   const boxes = document.querySelectorAll(".column");
@@ -54,6 +54,18 @@ const mouseoverHandler = () => {
       box.style.backgroundColor = getColor();
     });
   });
+};
+
+const updateColor = () => {
+  const color = prompt(
+    "Color Name? Ensure your chosen color is valid",
+    "yellow"
+  ).toLowerCase();
+
+  const isColorValid = confirm(`Are you sure ${color} is a valid color?`);
+
+  if (isColorValid) localStorage.setItem("color", color);
+  else updateColor();
 };
 
 const updateGrid = () => {
@@ -75,33 +87,23 @@ const updateGrid = () => {
   mouseoverHandler();
 };
 
+createGrid(16, 16);
+mouseoverHandler();
+
+// randomize color
+const randomizeColorButton = document.querySelector(".randomize-color");
+randomizeColorButton.addEventListener("click", () => {
+  localStorage.setItem("color", "random");
+});
+
+// create new grid
 const newGridButton = document.querySelector(".update-grid");
 newGridButton.addEventListener("click", updateGrid);
 
-mouseoverHandler();
-
-const clearGrid = () => {
-  const boxes = document.querySelectorAll(".column");
-  boxes.forEach((box) => {
-    box.style.backgroundColor = "";
-  });
-};
-
+// clear grid
 const clearButton = document.querySelector(".clear-grid");
 clearButton.addEventListener("click", clearGrid);
 
-const updateColor = () => {
-  const color = prompt(
-    "Color Name? Ensure your chosen color is valid",
-    "yellow"
-  ).toLowerCase();
-
-  const isColorValid = confirm(`Are you sure ${color} is a valid color?`);
-
-  if (isColorValid) localStorage.setItem("color", color);
-  else updateColor();
-};
-
+// change color
 const changeColorButton = document.querySelector(".change-color");
-
 changeColorButton.addEventListener("click", updateColor);
